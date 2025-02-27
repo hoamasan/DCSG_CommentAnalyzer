@@ -45,8 +45,9 @@ for post in posts:
     print(f"작성일: {post['date']}")
     print(f"글쓴이: {post['author']}")
     
+    print("-" * 40)
     """
-    # 댓글 가져오기
+    # 댓글 가져오기 / 현재 오류 심각
     comments = get_comments(post_url)
 
     # 댓글 출력
@@ -56,21 +57,3 @@ for post in posts:
         print("*" * 40)
     print("-" * 40)
     """
-
-"""
-# 댓글 크롤링
-
-from DCSG_CommentCrawler import get_comments
-
-# 예시 게시글 URL
-#post_url = "https://gall.dcinside.com/mgallery/board/view/?id=tenbagger&no=6560122"
-
-# 댓글 가져오기
-comments = get_comments(post_url)
-
-# 댓글 출력
-for comment in comments:
-    print(f"작성자: {comment['author']}")
-    print(f"내용: {comment['content']}")
-    print("-" * 40)
-"""
