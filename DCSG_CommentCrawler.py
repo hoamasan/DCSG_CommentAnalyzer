@@ -4,13 +4,17 @@ from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
 from webdriver_manager.chrome import ChromeDriverManager
-from selenium.webdriver.common.by import By
 import time
+from selenium.webdriver.common.by import By
 
 def get_comments(post_url):
     # Selenium 설정
     options = Options()
     options.headless = True  # 브라우저를 실제로 띄우지 않음
+    options.add_argument("--disable-gpu")  # GPU 비활성화
+    options.add_argument("--no-sandbox")  # 샌드박스 비활성화
+    options.add_argument("--disable-dev-shm-usage")  # 디버그 메시지 비활성화
+
     driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
 
     # 게시글 페이지 열기

@@ -8,7 +8,7 @@ stock_name = "엔비"
 # 게시글 목록 페이지 URL
 base_url = "https://gall.dcinside.com/mgallery/board/lists/"
 params = {
-    "id": "tenbagger",
+    "id": "stockus",
     "s_type": "search_subject_memo",  # 제목 + 본문 검색
     "s_keyword": stock_name,  # 검색 키워드
 }
@@ -44,8 +44,9 @@ for post in posts:
     print(f"URL: {post['url']}")
     print(f"작성일: {post['date']}")
     print(f"글쓴이: {post['author']}")
-    # 댓글 가져오기
     
+    """
+    # 댓글 가져오기
     comments = get_comments(post_url)
 
     # 댓글 출력
@@ -54,7 +55,7 @@ for post in posts:
         print(f"내용: {comment['content']}")
         print("*" * 40)
     print("-" * 40)
-
+    """
 
 """
 # 댓글 크롤링
