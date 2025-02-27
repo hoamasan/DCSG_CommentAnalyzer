@@ -18,17 +18,29 @@ soup = BeautifulSoup(response.text, "html.parser")
 
 # 게시글 목록 가져오기
 posts = []
-for row in soup.select(".ub-content"):  # 게시글 리스트
+# 지정된 tr 태그 내의 게시글만 가져오기
+for row in soup.select("div.gall_listwrap.list table.gall_list tbody.listwrap2 tr.ub-content.us-post"):
     title_tag = row.select_one(".gall_tit a")  # 제목 링크
     date_tag = row.select_one(".gall_date")  # 작성 날짜
-
-    if title_tag and date_tag:
+    author_tag = row.select_one(".gall_writer")  # 작성자
+    
+    # 말머리가 '설문' 또는 'AD'인 게시글 제외
+    if title_tag and date_tag and author_tag:
         title = title_tag.text.strip()  # 게시글 제목
         post_url = "https://gall.dcinside.com" + title_tag["href"]  # 게시글 URL
         date = date_tag.text.strip()  # 작성 시간
+        author = author_tag.text.strip()  # 글쓴이
+        
+        # 게시글 제목 앞에 '설문'이나 'AD'가 포함되어 있으면 제외
+        if "설문" in title or "AD" in title:
+            continue
 
-        posts.append({"title": title, "url": post_url, "date": date})
+        posts.append({"title": title, "url": post_url, "date": date, "author": author})
 
 # 결과 출력
 for post in posts:
-    print(post)
+    print(f"제목: {post['title']}")
+    print(f"URL: {post['url']}")
+    print(f"작성일: {post['date']}")
+    print(f"글쓴이: {post['author']}")
+    print("-" * 40)
