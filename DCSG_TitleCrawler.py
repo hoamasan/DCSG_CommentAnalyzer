@@ -1,10 +1,8 @@
 import requests
 from bs4 import BeautifulSoup
-from DCSG_CommentCrawler import get_comments
-from DCSG_ContentCrawler import get_content
 
 # 검색할 주식명 (예: '엔비')
-stock_name = "엔비"
+stock_name = input("검색할 키워드를 입력하세요: ").strip()
 
 # 게시글 목록 페이지 URL
 base_url = "https://gall.dcinside.com/mgallery/board/lists/"
@@ -47,17 +45,3 @@ for post in posts:
     print(f"글쓴이: {post['author']}")
     
     print("-" * 40)
-    
-    content=get_content(post_url)
- 
-    """
-    # 댓글 가져오기 / 현재 오류 심각
-    comments = get_comments(post_url)
-
-    # 댓글 출력
-    for comment in comments:
-        print(f"작성자: {comment['author']}")
-        print(f"내용: {comment['content']}")
-        print("*" * 40)
-    print("-" * 40)
-    """
