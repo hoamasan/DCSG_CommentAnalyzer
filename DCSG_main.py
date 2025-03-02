@@ -1,0 +1,2 @@
+from DCSG_CommentCrawler import get_comments
+from DCSG_ContentCrawler import get_content

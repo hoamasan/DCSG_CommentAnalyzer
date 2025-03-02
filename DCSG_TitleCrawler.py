@@ -1,6 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 from DCSG_CommentCrawler import get_comments
+from DCSG_ContentCrawler import get_content
 
 # 검색할 주식명 (예: '엔비')
 stock_name = "엔비"
@@ -46,6 +47,9 @@ for post in posts:
     print(f"글쓴이: {post['author']}")
     
     print("-" * 40)
+    
+    content=get_content(post_url)
+ 
     """
     # 댓글 가져오기 / 현재 오류 심각
     comments = get_comments(post_url)
